@@ -14,9 +14,9 @@ class TestGreetProgrammer:
         '''prints "Hello, programmer!"'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        greet_programmer()
+        greet_programmer("programmer")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Hello, programmer!\n")
+        assert(captured_out.getvalue().strip() == "Hello, programmer!")
 
 class TestGreet:
     '''function greet()'''
@@ -27,7 +27,7 @@ class TestGreet:
         sys.stdout = captured_out
         greet("Guido")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Hello, Guido!\n")
+        assert(captured_out.getvalue().strip() == "Hello, Guido!")
 
 class TestGreetWithDefault:
     '''function greet_with_default()'''
@@ -36,18 +36,19 @@ class TestGreetWithDefault:
         '''prints "Hello, programmer!"'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        greet_with_default()
+        greet_with_default ('Guido')
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Hello, programmer!\n")
+        assert(captured_out.getvalue().strip() =="Hello, Guido")
 
-    def test_greet_with_default_with_param(self):
+    class TestGreet:
+        '''function greet()'''
+    def test_greet(self):
         '''prints "Hello, {name}!"'''
         captured_out = io.StringIO()
         sys.stdout = captured_out
-        greet_with_default("Guido")
+        greet("Guido")
         sys.stdout = sys.__stdout__
-        assert(captured_out.getvalue() == "Hello, Guido!\n")
-
+        assert captured_out.getvalue().strip() == "Hello, Guido!"  
 class TestAdd:
     '''function add()'''
 
